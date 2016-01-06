@@ -1,4 +1,4 @@
-## Instablog built with Laravel PHP Framework
+## Instablog 2.0 built with Laravel PHP Framework
 
 An example project for Tafe Western Students 2016.
 

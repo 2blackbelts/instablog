@@ -15,7 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('hello', 'PostController@index');
+	
 
 
 /*
@@ -30,5 +30,8 @@ Route::get('hello', 'PostController@index');
 */
 
 Route::group(['middleware' => ['web']], function () {
-    //
+	Route::get('hello', 'PostController@index');
+	Route::get('post/{id}', 'PostController@show');
+	Route::get('create/post', 'PostController@create');
+	Route::post('create/post', 'PostController@store');
 });

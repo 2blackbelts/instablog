@@ -5,8 +5,10 @@ namespace instablog\Http\Controllers;
 use Illuminate\Http\Request;
 
 use instablog\Http\Requests;
+use instablog\Http\Requests\CreatePostRequest;
 use instablog\Http\Controllers\Controller;
 use instablog\Post;
+use Illuminate\Support\Facades\Input;
 
 class PostController extends Controller
 {
@@ -31,7 +33,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return view('posts.create');
     }
 
     /**
@@ -40,9 +42,16 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreatePostRequest $request)
     {
-        //
+        $post = new Post;
+
+        $post->title = Input::get('title');
+        $post->content = Input::get('content');
+
+        $post->save();
+
+        return redirect('/hello');
     }
 
     /**
@@ -53,7 +62,8 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        //
+        $data = array('post' => Post::find($id));
+        return view('post', $data);
     }
 
     /**

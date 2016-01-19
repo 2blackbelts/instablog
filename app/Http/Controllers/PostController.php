@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use instablog\Http\Requests;
 use instablog\Http\Requests\CreatePostRequest;
+use instablog\Http\Requests\UpdatePostRequest;
 use instablog\Http\Controllers\Controller;
 use instablog\Post;
 use Illuminate\Support\Facades\Input;
@@ -74,7 +75,8 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = array('post' => Post::find($id));
+        return view('posts.edit', $data);
     }
 
     /**
@@ -84,9 +86,16 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdatePostRequest $request, $id)
     {
-        //
+        $post = Post::find($id);
+
+        $post->title = Input::get('title');
+        $post->content = Input::get('content');
+
+        $post->save();
+
+        return redirect('/hello');
     }
 
     /**
@@ -97,6 +106,10 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $post = Post::find($id);
+
+        $post->delete();
+
+        return redirect('/hello');
     }
 }

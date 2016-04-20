@@ -9,8 +9,8 @@
     	<p>{{ $post->title }} :: {{ $post->content }}</p>
 
     	<p>
-    		<a href="{{ url('edit/post/' . $post->id) }}">Edit Post</a>
-    		<a href="{{ URL::previous() }}">Back</a>
+    		<a class="btn btn-info" href="{{ url('edit/post/' . $post->id) }}">Edit Post</a>
+    		<a class="btn btn-warning" href="{{ URL::previous() }}">Back</a>
     	</p>
 
 @endsection

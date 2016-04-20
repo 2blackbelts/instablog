@@ -21,8 +21,8 @@ class PostController extends Controller
     public function index()
     {
         $data = array(
-                    'message' => 'This is a nice page!',
-                    'posts'   => Post::all()
+                    'message' => 'Start Writing!',
+                    'posts'   => Post::orderby('created_at', 'desc')->get()
                     );
         return view('hello', $data);
     }

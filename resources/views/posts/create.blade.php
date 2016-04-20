@@ -17,17 +17,16 @@
 	@endif
 
 	{!! Form::open(array('url' => 'create/post')) !!}
+	<div class="form-group">
+		{!! Form::label('title', 'Title'); !!} 
+		{!! Form::text('title', '', ['placeholder' => 'Your Title', 'class' => 'form-control']) !!}
+	</div>
 
-	{!! Form::label('title', 'Title'); !!} 
-	<br>
-	{!! Form::text('title', '', ['placeholder' => 'Your Title']) !!}
-	<br>
-
-	{!! Form::label('content', 'Content'); !!} 
-	<br>
-	{!! Form::textarea('content', '', ['placeholder' => 'Your Content']) !!}
-	<br>
-	{!! Form::submit('Create') !!}
+	<div class="form-group">
+		{!! Form::label('content', 'Content'); !!} 
+		{!! Form::textarea('content', '', ['placeholder' => 'Your Content', 'class' => 'form-control']) !!}
+	</div>
+	{!! Form::submit('Create', array('class' => 'btn btn-primary')) !!}
 	{!! Form::close() !!}
 
 @endsection

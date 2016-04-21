@@ -30,7 +30,7 @@
 
       <div class="blog-header">
         <h1 class="blog-title">Instablog</h1>
-        <p class="lead blog-description">The official template of creating a Bootstrap Blog.</p>
+        <p class="lead blog-description">The best thing since sliced bread.</p>
       </div>
 
       <div class="row">
@@ -44,7 +44,7 @@
         <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
           <div class="sidebar-module sidebar-module-inset">
             <h4>About</h4>
-            <p>Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
+            <p>Instablog was founded early 2016 in the quiet TAFE offices of Broken Hill. It has since become home to a single test user with a handful of posts. Watch this space as Instablog rocks the likes of Silicon Valley. </p>
           </div>
           <div class="sidebar-module">
             <h4>Archives</h4>
@@ -78,7 +78,7 @@
     </div><!-- /.container -->
 
     <footer class="blog-footer">
-      <p>Blog template built for <a href="http://getbootstrap.com">Bootstrap</a> by <a href="https://twitter.com/mdo">@mdo</a>.</p>
+      <p>All code and content generated for Instablog are for educational purposes only.</p>
       <p>
         <a href="#">Back to top</a>
       </p>

@@ -50,13 +50,16 @@ Route::group(['middleware' => ['web']], function () {
 	Route::get('hello', 'PostController@index');
 	// View Resource
 	Route::get('post/{id}', 'PostController@show');
-	// Create Resource
-	Route::get('create/post', 'PostController@create');
-	Route::post('create/post', 'PostController@store');
-	// Edit Resource
-	Route::get('edit/post/{id}', 'PostController@edit');
-	Route::put('edit/post/{id}', 'PostController@update');
-	// Delete Resource
-	Route::delete('delete/post/{id}', 'PostController@destroy');
+
+	Route::group(['middleware' => ['auth']], function () {
+		// Create Resource
+		Route::get('create/post', 'PostController@create');
+		Route::post('create/post', 'PostController@store');
+		// Edit Resource
+		Route::get('edit/post/{id}', 'PostController@edit');
+		Route::put('edit/post/{id}', 'PostController@update');
+		// Delete Resource
+		Route::delete('delete/post/{id}', 'PostController@destroy');
+	});
 });
 

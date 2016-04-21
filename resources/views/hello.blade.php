@@ -4,10 +4,11 @@
 
 @section('content')
 
+@if(Auth::user())
 	<p>
 		{{ $message }} <a class="btn btn-primary btn-sm" href="/create/post">Create a post</a>
 	</p>
-
+@endif
 
 	@foreach ($posts as $post)
 		<div class="blog-post">

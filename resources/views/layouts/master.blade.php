@@ -21,7 +21,11 @@
       <div class="container">
         <nav class="blog-nav">
           <a class="blog-nav-item {{ Request::is('hello') ? 'active' : null }}" href="/hello">Home</a>
-          <a class="blog-nav-item {{ Request::is('create/post') ? 'active' : null }}" href="/create/post">Create</a>
+
+          @if(Auth::user())
+            <a class="blog-nav-item {{ Request::is('create/post') ? 'active' : null }}" href="/create/post">Create</a>
+          @endif
+          
           <a class="blog-nav-item" href="#">Press</a>
           <a class="blog-nav-item" href="#">New hires</a>
 

@@ -4,7 +4,7 @@
 
 @section('content')
 
-	<h1>This is single post!</h1>
+	<h1>This is a single post!</h1>
 
     	<p>{{ $post->title }} :: {{ $post->content }}</p>
 

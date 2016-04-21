@@ -12,6 +12,9 @@
 	<link rel="stylesheet" type="text/css" href="{{ URL::asset('css/blog.css') }}">
 	<!-- My Custom CSS -->
 	<link rel="stylesheet" type="text/css" href="{{ URL::asset('css/style.css') }}">
+  <!-- Font Awesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel='stylesheet' type='text/css'>
+
 </head>
 <body>
 	<div class="blog-masthead">
@@ -21,7 +24,22 @@
           <a class="blog-nav-item {{ Request::is('create/post') ? 'active' : null }}" href="/create/post">Create</a>
           <a class="blog-nav-item" href="#">Press</a>
           <a class="blog-nav-item" href="#">New hires</a>
-          <a class="blog-nav-item" href="#">About</a>
+
+          @if (Auth::guest())
+            <a class="blog-nav-item navbar-right {{ Request::is('login') ? 'active' : null }}" href="{{ url('/login') }}">Login</a>
+            <a class="blog-nav-item navbar-right {{ Request::is('register') ? 'active' : null }}" href="{{ url('/register') }}">Register</a>
+          @else
+            <li class="dropdown blog-nav-item navbar-right">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                    {{ Auth::user()->name }} <span class="caret"></span>
+                </a>
+
+                <ul class="dropdown-menu" role="menu">
+                    <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
+                </ul>
+            </li>
+          @endif
+
         </nav>
       </div>
     </div>

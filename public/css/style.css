@@ -1,3 +1,17 @@
 body {
 	/*background-color: yellow;*/
 }
+
+.fa-btn {
+    margin-right: 6px;
+}
+
+body > div.blog-masthead > div > nav > li > a.dropdown-toggle {
+	color: #cdddeb;
+}
+
+body > div.blog-masthead > div > nav > li > a.dropdown-toggle:hover,
+body > div.blog-masthead > div > nav > li > a.dropdown-toggle:focus {
+  color: #fff;
+  text-decoration: none;
+}

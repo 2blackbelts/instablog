@@ -5,8 +5,10 @@ namespace instablog\Http\Controllers;
 use Illuminate\Http\Request;
 
 use instablog\Http\Requests;
+use instablog\Http\Requests\UpdateUserRequest;
 use instablog\Http\Controllers\Controller;
 use instablog\User;
+use Illuminate\Support\Facades\Input;
 
 class UserController extends Controller
 {
@@ -51,9 +53,21 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateUserRequest $request, $id)
     {
-        //
+        // dd(Input::all());
+        $user = User::find($id);
+
+        $user->name = Input::get('name');
+        $user->email = Input::get('email');
+
+        if(Input::get('password')) {
+            $user->password = bcrypt(Input::get('password'));
+        }
+
+        $user->save();
+
+        return redirect('user/' . $id);
     }
 
     /**

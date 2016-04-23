@@ -16,6 +16,44 @@
         <div class="panel-body">
             <p><strong>Username: </strong>{{ $user->name }}</p>
             <p><strong>Member Since: </strong>{{ $user->created_at->format('jS \\of F Y') }}</p>
+
+            @if($user->id == Auth::id())
+
+                @if (count($errors) > 0)
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+
+                {!! Form::open(array('url' => 'update/user/' . $user->id, 'method' => 'PUT')) !!}
+                <div class="form-group">
+                    {!! Form::label('name', 'Title'); !!} 
+                    {!! Form::text('name', $user->name, ['placeholder' => 'Your Name', 'class' => 'form-control']) !!}
+                </div>
+
+                <div class="form-group">
+                    {!! Form::label('email', 'Email'); !!} 
+                    {!! Form::email('email', $user->email, ['placeholder' => 'Your Email', 'class' => 'form-control']) !!}
+                </div>  
+
+                <div class="form-group">
+                    {!! Form::label('password', 'New Password'); !!} 
+                    {!! Form::password('password', ['placeholder' => 'New Password', 'class' => 'form-control']) !!}
+                </div> 
+
+                <div class="form-group">
+                    {!! Form::label('password_confirmation', 'Confirm New Password'); !!} 
+                    {!! Form::password('password_confirmation', ['placeholder' => 'Confirm New Password', 'class' => 'form-control']) !!}
+                </div> 
+
+                {!! Form::submit('Update', array('class' => 'btn btn-warning')) !!}
+                {!! Form::close() !!}
+
+            @endif
         </div>
     </div>
 

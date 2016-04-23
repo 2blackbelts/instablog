@@ -51,10 +51,13 @@ Route::group(['middleware' => ['web']], function () {
 	// View Resource
 	Route::get('post/{id}', 'PostController@show');
 
-	// User Route...
+	// User Routes...
 	Route::get('user/{id}', 'UserController@show');
 
 	Route::group(['middleware' => ['auth']], function () {
+		// User Routes...
+		Route::put('update/user/{id}', 'UserController@update');
+
 		// Create Resource
 		Route::get('create/post', 'PostController@create');
 		Route::post('create/post', 'PostController@store');

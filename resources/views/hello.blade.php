@@ -15,7 +15,8 @@
             <h2 class="blog-post-title">
             	<a href="{{ url('post/' . $post->id) }}">{{ $post->title }}</a>
             </h2>
-            <p class="blog-post-meta">{{ $post->created_at->diffForHumans() }} by <a href="#">Someone...</a></p>
+            <p class="blog-post-meta">{{ $post->created_at->diffForHumans() }} by <a href="#">
+              {{ $post->author->name }}</a></p>
             <p>{{ $post->content }}</p>
 		</div><!-- /.blog-post -->
 	@endforeach

@@ -10,6 +10,7 @@ use instablog\Http\Requests\UpdatePostRequest;
 use instablog\Http\Controllers\Controller;
 use instablog\Post;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
@@ -45,10 +46,12 @@ class PostController extends Controller
      */
     public function store(CreatePostRequest $request)
     {
+        // dd(Auth::id());
         $post = new Post;
 
         $post->title = Input::get('title');
         $post->content = Input::get('content');
+        $post->author_id = Auth::id();
 
         $post->save();
 

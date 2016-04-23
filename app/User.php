@@ -26,7 +26,7 @@ class User extends Authenticatable
 
     public function posts() {
 
-        return $this->hasMany('instablog\Post');
-        
+        return $this->hasMany('instablog\Post', 'author_id');
+
     }
 }

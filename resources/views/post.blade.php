@@ -4,13 +4,21 @@
 
 @section('content')
 
-	<h1>This is a single post!</h1>
+	<div class="blog-post">
+        <h2 class="blog-post-title">
+        	<a href="{{ url('post/' . $post->id) }}">{{ $post->title }}</a>
+        </h2>
+        <p class="blog-post-meta">{{ $post->created_at->diffForHumans() }} by <a href="{{ url('user/' . $post->author->id) }}">
+          {{ $post->author->name }}</a></p>
+        <p>{{ $post->content }}</p>
+	</div><!-- /.blog-post -->
 
-    	<p>{{ $post->title }} :: {{ $post->content }}</p>
-
-    	<p>
-    		<a class="btn btn-info" href="{{ url('edit/post/' . $post->id) }}">Edit Post</a>
-    		<a class="btn btn-warning" href="{{ URL::previous() }}">Back</a>
-    	</p>
-
+	<p>
+		@if(Auth::user())
+			<a class="btn btn-info" href="{{ url('edit/post/' . $post->id) }}">Edit Post</a>
+		@endif
+		<a class="btn btn-warning" href="{{ URL::previous() }}">Back</a>
+	</p>
+	
 @endsection
+

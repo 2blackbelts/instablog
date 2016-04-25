@@ -27,6 +27,11 @@ class User extends Authenticatable
     public function posts() {
 
         return $this->hasMany('instablog\Post', 'author_id');
+    }
 
+    public function roles() {
+
+        return $this->belongsToMany('instablog\Role');
+        
     }
 }

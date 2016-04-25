@@ -67,7 +67,7 @@ class UserController extends Controller
 
         $user->save();
 
-        return redirect('user/' . $id);
+        return redirect('user/' . $id)->with('success', 'Your profile was updated!');
     }
 
     /**

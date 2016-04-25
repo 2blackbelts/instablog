@@ -54,6 +54,7 @@ Route::group(['middleware' => ['web']], function () {
 	// User Routes...
 	Route::get('user/{id}', 'UserController@show');
 
+	// AUTH USER ROUTES
 	Route::group(['middleware' => ['auth']], function () {
 		// User Routes...
 		Route::put('update/user/{id}', 'UserController@update');
@@ -65,7 +66,14 @@ Route::group(['middleware' => ['web']], function () {
 		Route::get('edit/post/{id}', 'PostController@edit');
 		Route::put('edit/post/{id}', 'PostController@update');
 		// Delete Resource
-		Route::delete('delete/post/{id}', 'PostController@destroy')->middleware('role:Administrator');
+		Route::delete('delete/post/{id}', 'PostController@destroy');
+	});
+
+	// ADMIN ROUTES
+	Route::group(['middleware' => ['auth', 'role:Administrator']], function () {
+
+		// User Routes
+		Route::get('users', 'UserController@index');
 	});
 });
 

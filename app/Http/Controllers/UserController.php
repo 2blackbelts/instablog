@@ -19,7 +19,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        $data = array('users' => User::all());
+        return view('users.all', $data);
     }
 
     /**

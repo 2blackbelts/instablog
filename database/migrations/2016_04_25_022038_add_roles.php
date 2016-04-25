@@ -24,6 +24,10 @@ class AddRoles extends Migration
         $role->name = 'Administrator';
         $role->save();
 
+        $role = new Role();
+        $role->name = 'Manager';
+        $role->save();
+
         $user = User::find(1);
         $user->roles()->attach(1);
         $user->save();

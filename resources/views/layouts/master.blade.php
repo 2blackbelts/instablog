@@ -26,8 +26,16 @@
             <a class="blog-nav-item {{ Request::is('create/post') ? 'active' : null }}" href="/create/post">Create</a>
           @endif
           
-          <a class="blog-nav-item" href="#">Press</a>
-          <a class="blog-nav-item" href="#">New hires</a>
+          @if(Auth::user()->hasRole('Administrator'))
+            <li class="dropdown blog-nav-item navbar-right">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-gear"></i> <span class="caret"></span>
+                </a>
+
+                <ul class="dropdown-menu" role="menu">
+                  <li><a href="{{ url('users') }}"><i class="fa fa-btn fa-users"></i>All Users</a></li>
+                </ul>
+            </li>
+          @endif
 
           @if (Auth::guest())
             <a class="blog-nav-item navbar-right {{ Request::is('login') ? 'active' : null }}" href="{{ url('/login') }}">Login</a>

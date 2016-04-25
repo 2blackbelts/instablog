@@ -55,7 +55,7 @@ class PostController extends Controller
 
         $post->save();
 
-        return redirect('/hello');
+        return redirect('/hello')->with('success', 'Woo! A new post.');
     }
 
     /**
@@ -78,8 +78,18 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        $data = array('post' => Post::find($id));
-        return view('posts.edit', $data);
+        $post = Post::find($id);
+
+        // Check if Auth user owns the post.
+        if ($post->ownedByAuth()) {
+
+            $data = array('post' => $post);
+            return view('posts.edit', $data);
+
+        } else {
+
+            return back()->with('warning', 'You are not the owner of this post.');
+        }
     }
 
     /**
@@ -93,12 +103,21 @@ class PostController extends Controller
     {
         $post = Post::find($id);
 
-        $post->title = Input::get('title');
-        $post->content = Input::get('content');
+        // Check if Auth user owns the post.
+        if ($post->ownedByAuth()) {
 
-        $post->save();
+            $post->title = Input::get('title');
+            $post->content = Input::get('content');
 
-        return redirect('/hello')->with('success', 'Post was updated!');
+            $post->save();
+
+            return redirect('/hello')->with('success', 'Post was updated!');
+
+        } else {
+            // redirect to home page if not the owner
+            return redirect('/')->with('warning', 'Permission Denied');
+
+        }
     }
 
     /**
@@ -111,8 +130,16 @@ class PostController extends Controller
     {
         $post = Post::find($id);
 
-        $post->delete();
+        // Check if Auth user owns the post.
+        if ($post->ownedByAuth()) {
 
-        return redirect('/hello');
+            $post->delete();
+
+            return redirect('/hello')->with('success', 'Post was deleted. Sad to see it go...');
+
+        } else {
+
+            return redirect('/')->with('warning', 'Permission Denied');
+        }
     }
 }

@@ -15,7 +15,9 @@
 
 	<p>
 		@if(Auth::user())
-			<a class="btn btn-info" href="{{ url('edit/post/' . $post->id) }}">Edit Post</a>
+			@if($post->ownedByAuth())
+				<a class="btn btn-info" href="{{ url('edit/post/' . $post->id) }}">Edit Post</a>
+			@endif
 		@endif
 		<a class="btn btn-warning" href="{{ URL::previous() }}">Back</a>
 	</p>

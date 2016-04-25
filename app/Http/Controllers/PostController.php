@@ -23,7 +23,7 @@ class PostController extends Controller
     {
         $data = array(
                     'message' => 'Start Writing!',
-                    'posts'   => Post::orderby('created_at', 'desc')->get()
+                    'posts'   => Post::orderby('created_at', 'desc')->simplePaginate(5)
                     );
         return view('hello', $data);
     }
@@ -98,7 +98,7 @@ class PostController extends Controller
 
         $post->save();
 
-        return redirect('/hello');
+        return redirect('/hello')->with('success', 'Post was updated!');
     }
 
     /**

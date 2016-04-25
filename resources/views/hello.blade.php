@@ -22,8 +22,8 @@
 	@endforeach
           <nav>
             <ul class="pager">
-              <li><a href="#">Previous</a></li>
-              <li><a href="#">Next</a></li>
+              <li><a href="{{ $posts->previousPageUrl() }}">Previous</a></li>
+              <li><a href="{{ $posts->nextPageUrl() }}">Next</a></li>
             </ul>
           </nav>
 

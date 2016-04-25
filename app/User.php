@@ -34,4 +34,21 @@ class User extends Authenticatable
         return $this->belongsToMany('instablog\Role');
         
     }
+
+    public function hasRole($key) {
+        
+        foreach($this->roles as $role)
+        {
+            if($role->name = $key) {
+
+                return true;
+
+            } else {
+
+                return false;
+
+            }
+        }
+
+    }
 }

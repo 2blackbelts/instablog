@@ -14,6 +14,11 @@
         </div>
 
         <div class="panel-body">
+            
+            @if($user->hasRole('Administrator'))
+                <p>You are Admin</p>
+            @endif
+
             <p><strong>Username: </strong>{{ $user->name }}</p>
             <p><strong>Member Since: </strong>{{ $user->created_at->format('jS \\of F Y') }}</p>
 

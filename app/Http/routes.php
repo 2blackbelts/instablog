@@ -65,7 +65,7 @@ Route::group(['middleware' => ['web']], function () {
 		Route::get('edit/post/{id}', 'PostController@edit');
 		Route::put('edit/post/{id}', 'PostController@update');
 		// Delete Resource
-		Route::delete('delete/post/{id}', 'PostController@destroy');
+		Route::delete('delete/post/{id}', 'PostController@destroy')->middleware('role:Administrator');
 	});
 });
 

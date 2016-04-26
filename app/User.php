@@ -39,7 +39,7 @@ class User extends Authenticatable
         
         foreach($this->roles as $role)
         {
-            if($role->name = $key) {
+            if($role->name == $key) {
 
                 return true;
 

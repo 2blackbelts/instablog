@@ -44,7 +44,7 @@ Route::group(['middleware' => ['web']], function () {
 	$this->post('password/email', 'Auth\PasswordController@sendResetLinkEmail');
 	$this->post('password/reset', 'Auth\PasswordController@reset');
 
-    Route::get('/home', 'HomeController@index');
+    Route::get('/home', 'PostController@index');
 
 	// Post Routes...
 	Route::get('hello', 'PostController@index');
@@ -74,6 +74,8 @@ Route::group(['middleware' => ['web']], function () {
 
 		// User Routes
 		Route::get('users', 'UserController@index');
+		Route::get('admin/user/{id}', 'AdminController@edit');
+		Route::put('admin/user/update/{id}', 'AdminController@update');
 	});
 });
 

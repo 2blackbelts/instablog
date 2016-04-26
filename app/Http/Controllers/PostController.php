@@ -25,7 +25,7 @@ class PostController extends Controller
                     'message' => 'Start Writing!',
                     'posts'   => Post::orderby('created_at', 'desc')->simplePaginate(5)
                     );
-        return view('hello', $data);
+        return view('home', $data);
     }
 
     /**
@@ -55,7 +55,7 @@ class PostController extends Controller
 
         $post->save();
 
-        return redirect('/hello')->with('success', 'Woo! A new post.');
+        return redirect('/home')->with('success', 'Woo! A new post.');
     }
 
     /**
@@ -67,7 +67,7 @@ class PostController extends Controller
     public function show($id)
     {
         $data = array('post' => Post::find($id));
-        return view('post', $data);
+        return view('posts.single', $data);
     }
 
     /**
@@ -111,7 +111,7 @@ class PostController extends Controller
 
             $post->save();
 
-            return redirect('/hello')->with('success', 'Post was updated!');
+            return redirect('/home')->with('success', 'Post was updated!');
 
         } else {
             // redirect to home page if not the owner
@@ -135,7 +135,7 @@ class PostController extends Controller
 
             $post->delete();
 
-            return redirect('/hello')->with('success', 'Post was deleted. Sad to see it go...');
+            return redirect('/home')->with('success', 'Post was deleted. Sad to see it go...');
 
         } else {
 

@@ -26,6 +26,7 @@ class UpdatePostRequest extends Request
         return [
             'title' => 'required|max:45|unique:posts,id,' . $this->id,
             'content' => 'required',
+            'image' => 'image|mimes:jpeg,png|between:10,500',
         ];
     }
 }

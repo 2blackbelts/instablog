@@ -67,6 +67,10 @@ Route::group(['middleware' => ['web']], function () {
 		Route::put('edit/post/{id}', 'PostController@update');
 		// Delete Resource
 		Route::delete('delete/post/{id}', 'PostController@destroy');
+
+		// Image Routes...
+		Route::get('image/delete/{id}','PostController@getImage');
+		Route::delete('image/delete/{id}', 'PostController@deleteImage');
 	});
 
 	// ADMIN ROUTES

@@ -13,14 +13,25 @@
         <p>{{ $post->content }}</p>
 	</div><!-- /.blog-post -->
 
-	<p>
+	@foreach($post->images as $image)
+	<div class="col-md-3 col-sm-6">
+		<div class="thumbnail">
+			<img src="/uploads/images/{{ $image->path }}">
+		</div>
+		<div class="caption">
+			<a class="btn btn-danger btn-xs" href="{{ url('image/delete/' . $image->id) }}">Delete</a>
+		</div>
+	</div>
+	@endforeach
+	
+	<div class="col-md-12 col-sm-12">
 		@if(Auth::user())
 			@if($post->ownedByAuth())
 				<a class="btn btn-info" href="{{ url('edit/post/' . $post->id) }}">Edit Post</a>
 			@endif
 		@endif
 		<a class="btn btn-warning" href="{{ URL::previous() }}">Back</a>
-	</p>
+	</div>
 	
 @endsection
 

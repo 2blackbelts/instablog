@@ -16,7 +16,7 @@
 	    </div>
 	@endif
 
-	{!! Form::open(array('url' => 'edit/post/' . $post->id, 'method' => 'PUT')) !!}
+	{!! Form::open(array('url' => 'edit/post/' . $post->id, 'files' => true, 'method' => 'PUT')) !!}
 	<div class="form-group">
 		{!! Form::label('title', 'Title'); !!} 
 		{!! Form::text('title', $post->title, ['placeholder' => 'Your Title', 'class' => 'form-control']) !!}
@@ -26,6 +26,11 @@
 		{!! Form::label('content', 'Content'); !!} 
 		{!! Form::textarea('content', $post->content, ['placeholder' => 'Your Content', 'class' => 'form-control']) !!}
 	</div>	
+
+	<div class="form-group">
+		{!! Form::label('image', 'Upload Another Image') !!}
+		{!! Form::file('image') !!}
+	</div>
 
 	{!! Form::submit('Update', array('class' => 'btn btn-primary')) !!}
 	{!! Form::close() !!}

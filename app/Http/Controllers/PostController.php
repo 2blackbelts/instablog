@@ -9,8 +9,10 @@ use instablog\Http\Requests\CreatePostRequest;
 use instablog\Http\Requests\UpdatePostRequest;
 use instablog\Http\Controllers\Controller;
 use instablog\Post;
+use instablog\PostImage;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Auth;
+use File;
 
 class PostController extends Controller
 {
@@ -46,7 +48,8 @@ class PostController extends Controller
      */
     public function store(CreatePostRequest $request)
     {
-        // dd(Auth::id());
+        // dd($request);
+
         $post = new Post;
 
         $post->title = Input::get('title');
@@ -54,6 +57,18 @@ class PostController extends Controller
         $post->author_id = Auth::id();
 
         $post->save();
+
+        if(Input::hasFile('image')) {
+
+            $image = new PostImage;
+            $image->filename = Input::file('image')->getClientOriginalName();
+            $image->path = sha1(uniqid(mt_rand(), TRUE)) . "." . Input::file('image')->getClientOriginalExtension();
+            $image->post_id = $post->id;
+
+            Input::file('image')->move(public_path() . '/uploads/images', $image->path);
+
+            $image->save();
+        }
 
         return redirect('/home')->with('success', 'Woo! A new post.');
     }
@@ -111,7 +126,19 @@ class PostController extends Controller
 
             $post->save();
 
-            return redirect('/home')->with('success', 'Post was updated!');
+            if(Input::hasFile('image')) {
+
+                $image = new PostImage;
+                $image->filename = Input::file('image')->getClientOriginalName();
+                $image->path = sha1(uniqid(mt_rand(), TRUE)) . "." . Input::file('image')->getClientOriginalExtension();
+                $image->post_id = $post->id;
+
+                Input::file('image')->move(public_path() . '/uploads/images', $image->path);
+
+                $image->save();
+            }
+            
+            return redirect('/post/' . $post->id)->with('success', 'Post was updated!');
 
         } else {
             // redirect to home page if not the owner
@@ -142,4 +169,28 @@ class PostController extends Controller
             return redirect('/')->with('warning', 'Permission Denied');
         }
     }
+
+    public function getImage($id)
+    {
+        // Find the image and show it to the user. Confirm delete?
+        $data = array('image' => PostImage::find($id));
+        return view('posts.image', $data);
+    }
+
+    public function deleteImage($id)
+    {
+        // Delete the image (server, database)
+        // return "Ready to delete";
+
+        $image = PostImage::find($id);
+
+        if(File::exists(public_path() . '/uploads/images/' . $image->path))
+        {
+            File::delete(public_path() . '/uploads/images/' . $image->path);
+            $image->delete();
+        }
+
+        return redirect('/home')->with('success', 'Image was deleted.');
+    }
+    
 }

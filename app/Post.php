@@ -16,6 +16,12 @@ class Post extends Model
 
     }
 
+    public function images() {
+
+        return $this->hasMany('instablog\PostImage', 'post_id');
+        
+    }
+
     public function ownedByAuth() {
 
     	if($this->author->id == Auth::id()) {

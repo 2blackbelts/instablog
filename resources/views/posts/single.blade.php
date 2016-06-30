@@ -16,7 +16,8 @@
 	@foreach($post->images as $image)
 	<div class="col-md-3 col-sm-6">
 		<div class="thumbnail">
-			<img src="/uploads/images/{{ $image->path }}">
+			<img src="{!! Croppa::url('/uploads/images/' . $image->path, 100, 100) !!}">
+			<!-- <img src="/uploads/images/{{ $image->path }}"> -->
 		</div>
 		<div class="caption">
 			<a class="btn btn-danger btn-xs" href="{{ url('image/delete/' . $image->id) }}">Delete</a>

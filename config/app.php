@@ -156,6 +156,7 @@ return [
         instablog\Providers\EventServiceProvider::class,
         instablog\Providers\RouteServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
+        'Bkwld\Croppa\ServiceProvider',
 
     ],
 
@@ -204,6 +205,7 @@ return [
         'View'      => Illuminate\Support\Facades\View::class,
         'Form'      => Collective\Html\FormFacade::class,
         'Html'      => Collective\Html\HtmlFacade::class,
+        'Croppa'    => 'Bkwld\Croppa\Facade',
 
     ],
 

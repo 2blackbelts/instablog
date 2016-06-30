@@ -13,6 +13,7 @@ use instablog\PostImage;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Auth;
 use File;
+use Croppa;
 
 class PostController extends Controller
 {
@@ -161,6 +162,16 @@ class PostController extends Controller
         if ($post->ownedByAuth()) {
 
             $post->delete();
+
+            // delete images attached to post
+            foreach($post->images as $image)
+            {
+                if(File::exists(public_path() . '/uploads/images/' . $image->path))
+                {
+                    Croppa::delete(public_path() . '/uploads/images/' . $image->path);
+                    $image->delete();
+                }
+            }
 
             return redirect('/home')->with('success', 'Post was deleted. Sad to see it go...');
 

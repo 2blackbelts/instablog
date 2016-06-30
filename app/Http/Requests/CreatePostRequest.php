@@ -26,7 +26,7 @@ class CreatePostRequest extends Request
         return [
             'title' => 'required|unique:posts|max:45',
             'content' => 'required',
-            'image' => 'image|mimes:jpeg,png|between:10,500',
+            'image' => 'image|mimes:jpeg,png|between:10,900',
         ];
     }
 }

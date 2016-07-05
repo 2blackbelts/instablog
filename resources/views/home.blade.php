@@ -17,7 +17,7 @@
             </h2>
             <p class="blog-post-meta">{{ $post->created_at->diffForHumans() }} by <a href="{{ url('user/' . $post->author->id) }}">
               {{ $post->author->name }}</a></p>
-            <p>{{ $post->content }}</p>
+            <p>{!! $post->content !!}</p>
         </div><!-- /.blog-post -->
     @endforeach
           <nav>

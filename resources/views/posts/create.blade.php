@@ -2,6 +2,12 @@
 
 @section('title', 'Create a post')
 
+@section('styles')
+@parent
+	<!-- WYSIWYG editor -->
+	<link rel="stylesheet" type="text/css" href="{{ URL::asset('dist/ui/trumbowyg.css') }}">
+@endsection
+
 @section('content')
 
 	<h1>Create a post</h1>
@@ -24,7 +30,7 @@
 
 	<div class="form-group">
 		{!! Form::label('content', 'Content'); !!} 
-		{!! Form::textarea('content', '', ['placeholder' => 'Your Content', 'class' => 'form-control']) !!}
+		{!! Form::textarea('content', '', ['placeholder' => 'Your Content', 'class' => 'form-control', 'id' => 'trumbowyg-demo']) !!}
 	</div>
 
 	<div class="form-group">
@@ -34,4 +40,12 @@
 	{!! Form::submit('Create', array('class' => 'btn btn-primary')) !!}
 	{!! Form::close() !!}
 
+@endsection
+
+@section('scripts')
+@parent
+	<!-- WYSIWYG JS  -->
+	<script src="{{ URL::asset('dist/trumbowyg.min.js') }}"></script>
+	<script src="{{ URL::asset('js/trumbowyg-init.js') }}"></script>
+	
 @endsection

@@ -54,7 +54,7 @@ class PostController extends Controller
         $post = new Post;
 
         $post->title = Input::get('title');
-        $post->content = Input::get('content');
+        $post->content = strip_tags(Input::get('content'), '<p><strong><em><br>');
         $post->author_id = Auth::id();
 
         $post->save();

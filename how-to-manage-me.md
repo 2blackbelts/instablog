@@ -33,3 +33,14 @@ One option - so far this works - is to create a new branch and "Match tracking b
 **Take care** and make sure you always *commit* your changes. When you checkout and overwrite your local files, they are gone!
 
 **In short** - Commit when the work should be shared with other computers.
+
+**When you need to move to an old commit**
+You may find you need to open an old commit from months ago to demonstrate something to students, but you don't want to confuse them with a version of Instablog that is 6 months newer. To do this we need to move to an old commit
+
+    # This will detach your HEAD, that is, leave you with no branch checked out:
+    git checkout 0d1d7fc32
+This will load the version of Instablog you need. You may produce a video or an online demo then you need to revert back to the master or latest version. To avoid commiting any temporary changes you just made run:
+
+    git reset --hard 0d1d7fc32
+
+
